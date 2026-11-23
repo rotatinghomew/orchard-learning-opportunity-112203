@@ -1,15 +1,8 @@
 """查看本地业务资料的记录规模，不产生业务判定。"""
 import argparse
-import json
 from pathlib import Path
 
-
-def read_packet(path):
-    with Path(path).open(encoding="utf-8") as handle:
-        data = json.load(handle)
-    if not isinstance(data, dict) or any(not isinstance(value, (list, dict)) for value in data.values()):
-        raise ValueError("资料包必须是由记录列表或参数对象组成的 JSON 对象")
-    return data
+from packet import read_packet
 
 
 def main():
